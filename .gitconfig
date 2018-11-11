@@ -1,0 +1,6 @@
+[user]
+	email = sebastien@beekast.com
+	name = Sébastien TOUR
+[alias]
+	pullr = pull --rebase
+	st = status

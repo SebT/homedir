@@ -1,0 +1,228 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+set $mod Mod4
+
+# Styling (font from https://github.com/supermarin/YosemiteSanFranciscoFont, download then more ttf file to ~/.fonts)
+font pango:Open Sans, Awesome 12
+#font pango:System San Francisco Display, Awesome 12
+
+set $bg-color 	         #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+#                       border                  background              text                 indicator
+client.focused          $bg-color               $bg-color               $text-color          #00ff00
+client.unfocused        $inactive-bg-color 	$inactive-bg-color      $inactive-text-color #00ff00
+client.focused_inactive $inactive-bg-color 	$inactive-bg-color      $inactive-text-color #00ff00
+client.urgent           $urgent-bg-color        $urgent-bg-color        $text-color          #00ff00
+
+hide_edge_borders both
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+Q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+# enter floating media mode
+bindsym $mod+y fullscreen disable; floating enable; resize set 600 400; sticky enable; move window to position 1940 54
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating or sticky
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+s sticky toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+q focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+set $screen1 "eDP1"
+set $screen2 "HDMI2"
+
+set $wk1 "1: &#xf268;"
+set $wk2 "2: &#xf121;"
+set $wk3 "3: &#xf1d7;"
+set $wk4 "4: &#xf268;"
+set $wk5 "5: &#xf1fe;"
+set $wk6 "6"
+set $wk7 "7"
+set $wk8 "8"
+set $wk9 "9"
+set $wk10 "&#xf001;"
+
+workspace $wk1 output $screen1
+workspace $wk2 output $screen2
+workspace $wk3 output $screen1
+workspace $wk4 output $screen1
+workspace $wk5 output $screen1
+workspace $wk6 output $screen1
+workspace $wk7 output $screen1
+workspace $wk8 output $screen1
+workspace $wk9 output $screen1
+workspace $wk10 output $screen1
+
+# switch to workspace
+bindsym $mod+ampersand workspace $wk1
+bindsym $mod+eacute workspace $wk2
+bindsym $mod+quotedbl workspace $wk3
+bindsym $mod+apostrophe workspace $wk4
+bindsym $mod+parenleft workspace $wk5
+bindsym $mod+minus workspace $wk6
+bindsym $mod+egrave workspace $wk7
+bindsym $mod+underscore workspace $wk8
+bindsym $mod+ccedilla workspace $wk9
+bindsym $mod+agrave workspace $wk10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $wk1
+bindsym $mod+Shift+eacute move container to workspace $wk2
+bindsym $mod+Shift+3 move container to workspace $wk3
+bindsym $mod+Shift+4 move container to workspace $wk4
+bindsym $mod+Shift+5 move container to workspace $wk5
+bindsym $mod+Shift+6 move container to workspace $wk6
+bindsym $mod+Shift+egrave move container to workspace $wk7
+bindsym $mod+Shift+8 move container to workspace $wk8
+bindsym $mod+Shift+ccedilla move container to workspace $wk9
+bindsym $mod+Shift+agrave move container to workspace $wk10
+
+# assign [class="gmusic"] $wk10
+assign [class="Code"] $wk2
+assign [class="Rambox"] $wk3
+assign [class="Slack"] $wk3
+assign [class="Mattermost"] $wk3
+assign [class="Messenger for Desktop"] $wk3
+assign [class="TelegramDesktop"] $wk3
+
+# Move workspace to main or secondary screen
+bindsym $mod+Shift+G move workspace to output up
+
+# Bind autolock
+bindsym $mod+l exec i3lock --color=333333 -t -i ~/Images/Wallpapers/penislicorne.jpeg
+
+# Bind monitor manager
+bindsym $mod+m exec arandr
+
+# Amixer controls
+# bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
+# bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+# bindsym XF86AudioMute exec amixer set Master toggle 
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+
+# Screen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# Reload .Xresources file
+bindsym $mod+Shift+x exec xrdb ~/.Xresources
+# exit i3 (logs you out of your X session)
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'So, you want to leave?' -b 'Close i3' 'i3-msg exit' -b 'Suspend' 'exec systemctl suspend' -b 'Reboot' 'exec reboot' -b 'Turn off' 'exec poweroff'"
+bindsym $mod+Shift+e exec ~/.config/i3/i3blocks-contrib/shutdown_menu/shutdown_menu -c
+
+
+# resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command i3blocks -c ~/.config/i3/i3blocks.conf
+        tray_output primary
+        colors {
+                background $bg-color
+                separator #757575
+                #                  border             background         text
+                focused_workspace  $bg-color          $bg-color          $text-color
+                inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+                urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+        }
+}
+
+
+# =========== Exec on startup ==========
+
+exec --no-startup-id i3lock --color=333333 -t -i ~/Images/Wallpapers/patterns.png
+
+# Polybar
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# Monitor settings
+exec --no-startup-id ~/.screenlayout/beekast.sh
+
+# Battery
+exec --no-startup-id cbatticon
+
+# Wifi
+exec --no-startup-id nm-applet
+
+# Background
+exec --no-startup-id feh --bg-scale ~/Images/Wallpapers/forest.png
+
+# Fade effect
+exec --no-startup-id compton -f
+# Clip manager
+exec --no-startup-id clipit
+
+# Apps
+#exec --no-startup-id chromium
+exec --no-startup-id slack
