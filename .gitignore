@@ -37,6 +37,8 @@ Downloads/
 .config/user-dirs.dirs
 .config/user-dirs.locale
 .config/yarn/
+.config/Popcorn-Time/
+.config/nautilus/
 .dbus/
 .esd_auth
 .fehbg
@@ -70,10 +72,7 @@ Downloads/
 .yarn/
 .yarnrc
 .z
-.z.171
-.z.19379
-.z.24078
-.z.30374
+.z.*
 .zcompdump
 .zcompdump.zwc
 .zhistory
