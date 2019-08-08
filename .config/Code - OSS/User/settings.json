@@ -55,5 +55,8 @@
   "editor.formatOnType": false,
   "gitlens.historyExplorer.enabled": true,
   "breadcrumbs.enabled": true,
-  "prettier.disableLanguages": []
+  "prettier.disableLanguages": [],
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
