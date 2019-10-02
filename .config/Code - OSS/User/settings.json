@@ -32,7 +32,6 @@
   "eslint.options": {
     "extensions": [".html", ".js", ".vue", ".jsx"]
   },
-  "prettier.eslintIntegration": true,
   "prettier.singleQuote": true,
   "prettier.arrowParens": "always",
   "prettier.useTabs": true,
@@ -53,10 +52,13 @@
   "gitlens.keymap": "alternate",
   "editor.formatOnPaste": false,
   "editor.formatOnType": false,
-  "gitlens.historyExplorer.enabled": true,
   "breadcrumbs.enabled": true,
   "prettier.disableLanguages": [],
   "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
